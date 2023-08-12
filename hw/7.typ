@@ -1065,3 +1065,541 @@ If $N(M) = {vname(0)}$, the only such $vname(x)$ is $vname(0)$,
 and $q$ is therefore positive-definite.
 If $N(M) != {vname(0)}$, then there is some $vname(x) != vname(0)$ such that $M vname(x) = vname(0)$,
 so $q(vname(x)) = vname(0)$ and $q$ is not positive-definite.
+
+= 24.7
+
+== a
+
+#[
+    #let explicitA = $mat(
+        -5, -14, 2;
+        -14, 4, -16;
+        2, -16, 10;
+    )$
+
+    $
+    A vname(v)_1
+    &= explicitA vec(1, -2, 2) \
+    &= vec(27, -54, 54) \
+    &= 27 vec(1, -2, 2) \
+    &= 27 vname(v)_1 \
+    \
+    A vname(v)_2
+    &= explicitA vec(2, 2, 1) \
+    &= vec(-36, -36, -18) \
+    &= -18 vec(2, 2, 1) \
+    & = -18 vname(v)_2 \
+    \
+    A vname(v)_3
+    &= explicitA vec(-2, 1, 2) \
+    &= vec(0, 0, 0) \
+    &= 0 vec(-2, 1, 2) \
+    &= 0 vname(v)_3 \
+    $
+
+    $
+    lambda_1 = 27,
+    lambda_2 = -18,
+    lambda_3 = 0
+    $
+]
+
+== b
+
+Because $vname(v)_1$, $vname(v)_2$, and $vname(v)_3$ are an orthogonal basis for $R^3$,
+
+$
+vname(e)_i
+&=
+Proj_(vname(v)_1) vname(e)_i +
+Proj_(vname(v)_2) vname(e)_i +
+Proj_(vname(v)_3) vname(e)_i \
+$
+
+For convenience, I'll define $vname(v)_1'$, $vname(v)_2'$, and $vname(v)_3'$ as the normalized versions of $vname(v)_1$, $vname(v)_2$, and $vname(v)_3$, so
+
+$
+vname(v)_i'
+= vname(v)_i / ||vname(v)_i||
+= 1/3 vname(v)_i
+$
+
+Then
+
+$
+vname(e)_i
+&=
+(vname(e)_i dot vname(v)_1') vname(v)_1' +
+(vname(e)_i dot vname(v)_2') vname(v)_2' +
+(vname(e)_i dot vname(v)_3') vname(v)_3' \
+&=
+(vname(e)_i dot (1/3 vname(v)_1)) (1/3 vname(v)_1) +
+(vname(e)_i dot (1/3 vname(v)_2)) (1/3 vname(v)_2) +
+(vname(e)_i dot (1/3 vname(v)_3)) (1/3 vname(v)_3) \
+&=
+1/9 (
+    (vname(e)_i dot vname(v)_1) vname(v)_1 +
+    (vname(e)_i dot vname(v)_2) vname(v)_2 +
+    (vname(e)_i dot vname(v)_3) vname(v)_3
+)
+$
+
+I'll compute this for each basis vector in turn:
+
+$
+vname(e)_1
+&= 1/9 (
+    (vname(e)_1 dot vname(v)_1) vname(v)_1 +
+    (vname(e)_1 dot vname(v)_2) vname(v)_2 +
+    (vname(e)_1 dot vname(v)_3) vname(v)_3
+) \
+&= 1/9 (
+     1 vname(v)_1
+    +2 vname(v)_2
+    -2 vname(v)_3
+) \
+
+vname(e)_2
+&= 1/9 (
+    (vname(e)_2 dot vname(v)_1) vname(v)_1 +
+    (vname(e)_2 dot vname(v)_2) vname(v)_2 +
+    (vname(e)_2 dot vname(v)_3) vname(v)_3
+) \
+&= 1/9 (
+    -2 vname(v)_1
+    +2 vname(v)_2
+    +1 vname(v)_3
+) \
+
+vname(e)_3
+&= 1/9 (
+    (vname(e)_3 dot vname(v)_1) vname(v)_1 +
+    (vname(e)_3 dot vname(v)_2) vname(v)_2 +
+    (vname(e)_3 dot vname(v)_3) vname(v)_3
+) \
+&= 1/9 (
+     2 vname(v)_1
+    +1 vname(v)_2
+    +2 vname(v)_3
+) \
+$
+
+== c
+
+$
+A^10 vname(e)_1
+&= A^10 1/9 (
+     1 vname(v)_1
+    +2 vname(v)_2
+    -2 vname(v)_3
+) \
+&= 1/9 (
+    A^10 vname(v)_1
+    +2 A^10 vname(v)_2
+    -2 A^10 vname(v)_3
+) \
+&= 1/9 (
+    (27)^10 vname(v)_1
+    +2 (-18)^10 vname(v)_2
+    -2 (0)^10 vname(v)_3
+) \
+&= 1/9 (
+    27^10 vname(v)_1
+    +2 (-18)^10 vname(v)_2
+) \
+&= 1/9 vec(
+    27^10 + 4(-18)^10,
+    -2(27)^10 - 4(-18)^10,
+    2(27)^10 + 2(-18)^10
+)
+$
+
+$
+A^10 vname(e)_2
+&= A^10 1/9 (
+    -2 vname(v)_1
+    +2 vname(v)_2
+    +1 vname(v)_3
+) \
+&= 1/9 (
+    -2 A^10 vname(v)_1
+    +2 A^10 vname(v)_2
+    +A^10 vname(v)_3
+) \
+&= 1/9 (
+    -2 (27)^10 vname(v)_1
+    +2 (-18)^10 vname(v)_2
+    +0 vname(v)_3
+) \
+&= 1/9 vec(
+    -2 (27)^10 + 4 (-18)^10,
+    4 (27)^10 + 4 (-18)^10,
+    -4 (27)^10 + 2 (-18)^10
+)
+$
+
+$
+A^10 vname(e)_3
+&= A^10 1/9 (
+     2 vname(v)_1
+    +1 vname(v)_2
+    +2 vname(v)_3
+) \
+&= 1/9 (
+    2 A^10 vname(v)_1
+    +A^10 vname(v)_2
+    +2 A^10 vname(v)_3
+) \
+&= 1/9 (
+    2 (27)^10 vname(v)_1
+    +1 (-18)^10 vname(v)_2
+    +2 (0)^10 vname(v)_3
+) \
+&= 1/9 vec(
+    2 (27)^10 + 2 (-18)^10,
+    -4 (27)^10 + 2 (-18)^10,
+    4 (27)^10 + (-18)^10
+)
+$
+
+$
+A^10
+&= mat(
+    A^10 vname(e)_1,
+    A^10 vname(e)_2,
+    A^10 vname(e)_3
+) \
+&= 1/9 mat(
+    27^10 + 4(-18)^10, -2(27)^10 + 4(-18)^10, 2(27)^10 - 2(-18)^10;
+    -2(27)^10 - 4(-18)^10, 4(27)^10 + 4(-18)^10, -4(27)^10 + 2(-18)^10;
+    2(27)^10 + 2(-18)^10, -4(27)^10 + 2(-18)^10, 4(27)^10 + (-18)^10
+) \
+$
+
+== d
+
+$
+Q
+&= mat(vname(v)_1', vname(v)_2', vname(v)_3') \
+&= 1/3 mat(
+    1, 2, -2;
+    -2, 2, 1;
+    2, 1, 2
+) \
+
+A &= Q D Q^-1 \
+A^10
+&= Q D^10 Q^-1 \
+&= 1/3 mat(
+    1, 2, -2;
+    -2, 2, 1;
+    2, 1, 2
+) mat(
+    27^10, 0, 0;
+    0, (-18)^10, 0;
+    0, 0, (0)^10
+) 1/3 mat(
+    1, -2, 2;
+    2, 2, 1;
+    -2, 1, 2
+) \
+&= 1/9 mat(
+    1, 2, -2;
+    -2, 2, 1;
+    2, 1, 2
+) mat(
+    27^10, -2 (27)^10, 2 (27)^10;
+    2 (-18)^10, 2 (-18)^10, (-18)^10;
+    0, 0, 0;
+) \
+&= 1/9 mat(
+    27^10 + 4(-18)^10, -2(27)^10 + 4(-18)^10, 2(27)^10 - 2(-18)^10;
+    -2(27)^10 - 4(-18)^10, 4(27)^10 + 4(-18)^10, -4(27)^10 + 2(-18)^10;
+    2(27)^10 + 2(-18)^10, -4(27)^10 + 2(-18)^10, 4(27)^10 + (-18)^10
+) \
+$
+
+= 24.10
+
+== a
+
+$M vname(a)$ has entries equal to the dot product of $vname(a)$ with each row. Because every entry in $vname(a)$ is 1/3, the dot product is equal to the sum of the entries in each row, divided by three. The sum of the entries in each row is 1, so every entry in $M vname(a)$ is 1/3. Therefore, $M vname(a) = vname(a)$.
+
+This means that $vname(a)$ is an eigenvector of $M$ with eigenvalue $1$, because $M vname(a) = 1 vname(a)$.
+
+== b
+
+Let $vname(v) = 1/3 vname(1)$.
+
+By Proposition 24.4.2,
+for large $k$
+
+$
+M^k
+&approx lambda^k Proj_(vname(v)) \
+&approx 1^k / (vname(v) dot vname(v)) vname(v) vname(v)^T \
+&approx 1 / (1/9 + 1/9 + 1/9) (1/9 mat(
+    1, 1, 1;
+    1, 1, 1;
+    1, 1, 1
+)) \
+&approx 1/3 mat(
+    1, 1, 1;
+    1, 1, 1;
+    1, 1, 1
+) \
+$
+
+For a starting population of $vec(P_A, P_B, P_C)$,
+
+$
+M^k vec(P_A, P_B, P_C)
+&approx 1/3 mat(
+    1, 1, 1;
+    1, 1, 1;
+    1, 1, 1
+) vec(P_A, P_B, P_C) \
+&approx 1/3 vec(
+    P_A + P_B + P_C,
+    P_A + P_B + P_C,
+    P_A + P_B + P_C
+) \
+$
+
+So each island tends toward a population one third that of the total initial population.
+
+== c
+
+#[
+    #let explicitM = $mat(
+        0, 1, 0;
+        1, 0, 0;
+        0, 0, 1;
+    )$
+
+    $
+    M vec(0, 0, 1) &= explicitM vec(0, 0, 1) &= vec(0, 0, 1) &= 1 vec(0, 0, 1) \
+    M vec(1, -1, 0) &= explicitM vec(1, -1, 0) &= vec(-1, 1, 0) &= -1 vec(1, -1, 0) \
+    $
+]
+
+$M$ does not satisfy the premise of Proposition 24.4.2
+because there are two eigenvalues with equal absolute value.
+
+= 25.1
+
+== a
+
+$
+(diff^2 f)/(diff t^2)
+&= diff^2/(diff t^2) (A sin(x - c t) + B sin(x + c t)) \
+&= diff/(diff t) (-c A cos(x - c t) + c B cos(x + c t)) \
+&= - c^2 A sin(x - c t) - c^2 B sin(x + c t) \
+&= - c^2 (A sin(x - c t) + B sin(x + c t)) \
+\
+(diff^2 f)/(diff x^2)
+&= diff^2/(diff x^2) (A sin(x - c t) + B sin(x + c t)) \
+&= diff/(diff x) (A cos(x - c t) + B cos(x + c t)) \
+&= - A sin(x - c t) - B sin(x + c t) \
+c^2 (diff^2 f)/(diff x^2)
+&= - c^2 (A sin(x - c t) + B sin(x + c t)) \
+\
+(diff^2 f)/(diff t^2) - c^2 (diff^2 f)/(diff x^2)
+&= - c^2 (A sin(x - c t) + B sin(x + c t)) + c^2 (A sin(x - c t) + B sin(x + c t)) \
+&= 0
+$
+
+== b
+
+$
+(diff^2 f)/(diff t^2)
+&= diff^2/(diff t^2) (A h(x - c t) + B h(x + c t)) \
+&= diff/(diff t) (-c A h'(x - c t) + c B h'(x + c t)) \
+&= c^2 A h''(x - c t) + c^2 B h''(x + c t) \
+&= c^2 (A h''(x - c t) + B h''(x + c t)) \
+\
+(diff^2 f)/(diff x^2)
+&= diff^2/(diff x^2) (A h(x - c t) + B h(x + c t)) \
+&= diff/(diff x) (A h'(x - c t) + B h'(x + c t)) \
+&= A h''(x - c t) + B h''(x + c t) \
+c^2 (diff^2 f)/(diff x^2)
+&= c^2 (A h''(x - c t) + B h''(x + c t)) \
+\
+(diff^2 f)/(diff t^2) - c^2 (diff^2 f)/(diff x^2)
+&= c^2 (A h''(x - c t) + B h''(x + c t)) - c^2 (A h''(x - c t) + B h''(x + c t)) \
+&= 0
+$
+
+#pagebreak()
+== c
+
+Using the cosine sum and difference formulas,
+
+$
+f(x, t)
+&= sin(x) sin(c t) \
+&= 1/2 (cos(x) cos(c t) + sin(x) sin(c t)) - 1/2 (cos(x) cos(c t) - sin(x) sin(c t)) \
+&= 1/2 cos(x - c t) - 1/2 cos(x + c t) \
+$
+
+= 25.3
+
+== a
+
+$
+(nabla f)(x, y)
+&= vec(
+    (diff f)/(diff x),
+    (diff f)/(diff y)
+) \
+&= vec(
+    1/(x^2 + y) 2 x,
+    1/(x^2 + y)
+) \
+&= 1/(x^2 + y) vec(2 x, 1) \
+\
+(H f)(x, y)
+&= mat(
+    (diff^2 f)/(diff x^2), (diff^2 f)/(diff y diff x);
+    (diff^2 f)/(diff x diff y), (diff^2 f)/(diff y^2);
+) \
+&= mat(
+    diff/(diff x) (2x) / (x^2 + y), diff/(diff y) (2x) / (x^2 + y);
+    diff/(diff x) 1 / (x^2 + y), diff/(diff y) 1 / (x^2 + y);
+) \
+&= mat(
+    (2(x^2 + y) - 4x^2)/(x^2 + y)^2, - (2x)/(x^2 + y)^2;
+    - (2x)/(x^2 + y)^2, - 1/(x^2 + y)^2;
+) \
+&= 1/(x^2 + y)^2 mat(
+    2(x^2 + y) - 4x^2, - 2x;
+    - 2x, - 1;
+) \
+$
+
+== b
+
+$
+f(1 + h, k)
+&approx f(1, 0) + (nabla f)(1, 0) dot vec(h, k) + 1/2 vec(h, k) dot ((H f)(1, 0))vec(h, k) \
+&approx
+    ln(1 + 0) +
+    1/(1^2 + 0) vec(2, 1) dot vec(h, k) +
+    1/2 vec(h, k) dot 1/(1^2 + 0)^2 mat(
+        2(1^2 + 0) - 4(1)^2, - 2(1);
+        - 2(1), - 1;
+    ) vec(h, k) \
+&approx
+    2h + k +
+    1/2 vec(h, k) dot mat(
+        2 - 4, - 2;
+        - 2, - 1;
+    ) vec(h, k) \
+&approx
+    2h + k +
+    vec(h, k) dot mat(
+        - 1, - 1;
+        - 1, - 1/2;
+    ) vec(h, k) \
+&approx
+    2h + k
+    -h^2 - 2 h k - 1/2 k^2 \
+$
+
+== c
+
+The true value is $ln(1.1^2 + 0.2) approx #repr(calc.ln(1.1*1.1 + 0.2))$.
+
+The linear approximation is $2(0.1) + 0.2 = 0.4$.
+
+The quadratic approximation is $2(0.1) + 0.2 - (0.1)^2 - 2(0.1)(0.2) - 1/2 (0.2)^2 = #repr(calc.round(2*0.1 + 0.2 - 0.1*0.1 - 2*0.1*0.2 - 0.2*0.2/2, digits: 2))$.
+
+The quadratic approximation is indeed significantly more accurate.
+
+= 25.5
+
+== a
+
+$
+(H f)(x, y)
+&= mat(
+    (diff^2 f)/(diff x^2), (diff^2 f)/(diff y diff x);
+    (diff^2 f)/(diff x diff y), (diff^2 f)/(diff y^2);
+) \
+&= mat(
+    diff/(diff x) (6 y x - 2 y + 1/sqrt(x + 2 y)),
+    diff/(diff y) (6 y x - 2 y + 1/sqrt(x + 2 y));
+
+    diff/(diff x) (3 x^2 - 2 x + 2/sqrt(x + 2 y)),
+    diff/(diff y) (3 x^2 - 2 x + 2/sqrt(x + 2 y)),
+) \
+&= mat(
+    6 y - 1/2 (x + 2 y)^(-3/2),
+    6 x - 2 - (x + 2 y)^(-3/2);
+
+    6 x - 2 - (x + 2 y)^(-3/2),
+    - 2 (x + 2 y)^(-3/2);
+)
+$
+
+== b
+
+$
+(H f)(-1, 1)
+&= mat(
+    6 (1) - 1/2 ((-1) + 2 (1))^(-3/2),
+    6 (-1) - 2 - ((-1) + 2 (1))^(-3/2);
+
+    6 (-1) - 2 - ((-1) + 2 (1))^(-3/2),
+    - 2 ((-1) + 2 (1))^(-3/2);
+) \
+&= mat(
+    6 - 1/2 (1)^(-3/2), -6 - 2 - (1)^(-3/2);
+    -6 - 2 - (1)^(-3/2), - 2 (1)^(-3/2);
+) \
+&= mat(
+    11/5, -9;
+    -9, -2;
+) \
+\
+(H f)(1, 0)
+&= mat(
+    6 (0) - 1/2 ((1) + 2 (0))^(-3/2),
+    6 (1) - 2 - ((1) + 2 (0))^(-3/2);
+
+    6 (1) - 2 - ((1) + 2 (0))^(-3/2),
+    - 2 ((1) + 2 (0))^(-3/2);
+) \
+&= mat(
+    0 - 1/2 (1)^(-3/2), 6 - 2 - (1)^(-3/2);
+    6 - 2 - (1)^(-3/2), - 2 (1)^(-3/2);
+) \
+&= mat(
+    -1/2, 3;
+    3, -2;
+)
+$
+
+== c
+
+$
+f(-1 + h, 1 + k)
+&approx
+    f(-1, 1)
+    + (nabla f)(-1, 1) dot vec(h, k)
+    + 1/2 q_((H f)(-1, 1)) (h, k) \
+&approx
+    7
+    - 7 h + 7 k
+    + 11/10 h^2 - 9 h k - k^2 \
+
+f(1 + h, k)
+&approx
+    f(1, 0)
+    + (nabla f)(1, 0) dot vec(h, k)
+    + 1/2 q_((H f)(1, 0)) (h, k) \
+&approx
+    2
+    + h + 3 k
+    - 1/4 h^2 + 3 h k - k^2 \
+$
