@@ -747,14 +747,15 @@ The second column, therefore, can only have one nonzero entry, its second.
 Like with the first column, this entry must be $1$, so the second column is $vname(e)_2$.
 
 This process continues for all $n$ columns and we have that
-$M = mat(vname(e)_1, vname(e)_2, ..., vname(e)_n) = I_n$.
+$M = mat(vname(e)_1, vname(e)_2, ..., vname(e)_n;) = I_n$.
 
 Combining with the results of Part a and b yields:
 
 - Part a: $Q^(-1) Q' = R R'^(-1)$ is orthogonal and upper triangular with positive diagonal entries.
 - Part b: if $Q^(-1) Q' = I_n$, $Q = Q'$ and $R = R'$.
 - Part c: if a square matrix is orthogonal and upper triangular with positive diagonal entries, it is the identity matrix.
-- $Q^(-1) Q' = I_n$
+- $Q^(-1) Q' = I_n
+$
 - $Q = Q'$ and $R = R'$
 
 = 23.4
@@ -1603,3 +1604,360 @@ f(1 + h, k)
     + h + 3 k
     - 1/4 h^2 + 3 h k - k^2 \
 $
+
+= 25.8
+
+== a
+
+The associated symmetric matrix is:
+$ mat(
+    -1, 6;
+    6, -1;
+) $
+
+This matrix has characteristic polynomial:
+
+$
+lambda^2 + 2 lambda - 35 \
+lambda = (-2 plus.minus sqrt(144)) / 2 \
+lambda = -1 plus.minus 6 \
+\
+lambda_1 = -7 \
+lambda_2 = 5
+$
+
+Solve for eigenvectors:
+
+$
+(mat(
+    -1, 6;
+    6, -1;
+)
+- lambda_1 I_2) vname(w)_1
+&= vname(0) \
+mat(
+    6, 6;
+    6, 6;
+) vname(w)_1
+&= vname(0) \
+vname(w)_1 &= vec(1, -1) \
+\
+(mat(
+    -1, 6;
+    6, -1;
+)
+- lambda_2 I_2) vname(w)_2
+&= vname(0) \
+mat(
+    -6, 6;
+    6, -6;
+) vname(w)_2
+&= vname(0) \
+vname(w)_2 &= vec(1, 1) \
+$
+
+#figure(
+    image("../images/ex25_8_a.jpeg", width: 50%),
+    caption: [
+        A sketch of two level sets of the quadratic form.
+        The upper-right and lower-left curves are positive because eigenvalue $lambda_2 = 5$ is positive, and the opposite is true of the others.
+    ],
+)
+
+== b
+
+The associated symmetric matrix is:
+
+$ mat(
+    12, -3;
+    -3, 4;
+) $
+
+This matrix has characteristic polynomial:
+
+$
+lambda^2 - 16 lambda + 39 \
+(lambda - 13) (lambda - 3) \
+lambda_1 = 13 \
+lambda_2 = 3
+$
+
+Solve for eigenvectors:
+
+$
+(mat(
+    12, -3;
+    -3, 4;
+) - lambda_1 I_2) vname(w)_1
+&= vname(0) \
+mat(
+    -1, -3;
+    -3, -9;
+) vname(w)_1
+&= vname(0) \
+vname(w)_1 &= vec(3, -1) \
+\
+(mat(
+    12, -3;
+    -3, 4;
+) - lambda_2 I_2) vname(w)_2
+&= vname(0) \
+mat(
+    9, -3;
+    -3, 1;
+) vname(w)_2
+&= vname(0) \
+vname(w)_2 &= vec(1, 3) \
+$
+
+#figure(
+    image("../images/ex25_8_b.jpeg", width: 50%),
+    caption: [
+        A sketch of an elliptical level set of the quadratic form.
+        The ellipse is longer along the $w_2$ axis because its eigenvalue $lambda_2 = 3$ is smaller than $lambda_1 = 13$.
+    ]
+)
+
+= 26.3
+
+== a
+
+$
+(H f)(x, y)
+&= mat(
+    (diff^2 f) / (diff x^2), (diff^2 f) / (diff x diff y);
+    (diff^2 f) / (diff y diff x), (diff^2 f) / (diff y^2);
+) \
+&= mat(
+    diff / (diff x) (16 x + 6 y + 12 x^2 + 3 y^2),
+    diff / (diff x) (6 x + 6 x y);
+
+    diff / (diff y) (16 x + 6 y + 12 x^2 + 3 y^2),
+    diff / (diff y) (6 x + 6 x y);
+) \
+&= mat(
+    16 + 24 x, 6 + 6 y;
+    6 + 6 y, 6 x;
+) \
+\
+(H f)(0, 0) &= mat(
+    16, 6;
+    6, 0;
+) \
+(H f)(0, -2) &= mat(
+    16, -6;
+    -6, 0;
+) \
+(H f)(-3/2, -1) &= mat(
+    52, 0;
+    0, -9;
+) \
+(H f)(1/6, -1) &= mat(
+    20, 0;
+    0, 1;
+)
+$
+
+The Hessians at $(0, 0)$, $(0, -2)$, and $(-3/2, -1)$ are indefinite
+(because they are $2 times 2$ with negative determinants),
+so those are saddle points.
+The Hessian at $(1/6, -1)$ has quadratic form $20 x^2 + y^2$,
+so it is positive definite and $(1/6, -1)$ is therefore a local minimum.
+
+== b
+
+The Hessians at $(-3/2, -1)$ and $(1/6, -1)$ are diagonal,
+so their eigenvectors are the standard basis vectors
+and their respective eigenvalues are the diagonal entries.
+
+We can use the eigenvalues to approximate the level set of $f$ near the points
+by the quadratic approximation:
+
+#figure(
+    image("../images/ex26_3_b.jpeg", width: 50%),
+    caption: [
+        A sketch of the contour plots of $f$
+        near the points $(-3/2, -1)$ and $(1/6, -1)$.
+    ],
+)
+
+= 26.5
+
+== a
+
+$
+nabla f &= vname(0) \
+vec(
+    6 x^2 + y^2 + 10 x,
+    2 x y + 2 y,
+) &= vname(0) \
+(2x + 2)y &= 0 \
+$
+
+#columns[
+    If $y = 0$:
+    $
+    6 x^2 + 10 x &= 0 \
+    x(6 x + 10) &= 0 \
+    x &= 0 "or" -5/3 \
+    $
+
+    #colbreak()
+
+    If $x = -1$:
+    $
+    6 + y^2 - 10 &= 0 \
+    y^2 &= 4 \
+    y &= plus.minus 2 \
+    $
+]
+
+So the critical points of $f$ are:
+
+- $(0, 0)$
+- $(-5/3, 0)$
+- $(-1, 2)$
+- $(-1, -2)$
+
+== b
+
+$
+(H f)(x, y)
+&= (D nabla f)(x, y) \
+&= mat(
+    12 x + 10, 2 y;
+    2 y, 2 x + 2;
+) \
+\
+(H f)(0, 0) &= mat(
+    10, 0;
+    0, 2;
+) \
+(H f)(-5/3, 0) &= mat(
+    -10, 0;
+    0, -4/3;
+) \
+(H f)(-1, 2) &= mat(
+    -2, 4;
+    4, 0;
+) \
+(H f)(-1, -2) &= mat(
+    -2, -4;
+    -4, 0;
+)
+$
+
+The Hessians at $(0, 0)$ and $(-5/3, 0)$ are diagonal,
+so we can clearly see that they are positive-definite and negative-definite, respectively.
+Therefore, $(0, 0)$ is a local minimum and $(-5/3, 0)$ is a local maximum.
+
+The Hessians at $(-1, 2)$ and $(-1, -2)$ both have negative determinants,
+so they are indefinite and therefore are saddle points.
+
+#pagebreak()
+== c
+
+Again, since the Hessian matrices are diagonal,
+the eigenvalues are just the diagonal entries,
+with the basis vectors as eigenvectors.
+
+Since the points are local extrema,
+the contour plots of $f$ near the points
+will be approximately ellipses aligned with the eigenvectors.
+
+#figure(
+    image("../images/ex26_5_c.jpeg", width: 50%),
+    caption: [
+        A sketch of the contour plots of $f$
+        near the points $(0, 0)$ and $(-5/3, 0)$.
+    ],
+)
+
+= 26.8
+
+== a
+
+$
+nabla f &= vname(0) \
+(x - 1)^2 + y^2 &< 4 \
+\
+vec(2 x, -2 y) &= vname(0) \
+vec(x, y) &= vname(0)
+$
+
+Therefore $(0, 0)$ is the only critical point of $f$ within $D$.
+This point is a saddle point,
+because the point is a local maximum on the line $y = 0$
+and a local minimum on the line $x = 0$
+(where the function is a single-variable parabola).
+
+== b
+
+$
+(f compose bold(c)) (t)
+&= f(1 + 2 cos t, 2 sin t) \
+&= (1 + 2 cos t)^2 - (2 sin t)^2 \
+&= 1 + 4 cos t + 4 cos^2 t - 4 sin^2 t \
+&= 1 + 4 cos t + 4 cos 2 t \
+\
+0 &= dif / (dif t) (f compose bold(c)) (t) \
+&= -4 sin t - 8 sin 2 t \
+&= -4 sin t - 16 sin t cos t \
+&= sin t + 4 sin t cos t \
+&= sin t (1 + 4 cos t) \
+$
+
+If $sin t = 0$, $t$ is either $0$ or $pi$,
+so $cos t$ is either $1$ or $-1$, respectively.
+This gives us two critical points:
+
+- $(1 + 2 cos 0, 2 sin 0) = (3, 0)$
+- $(1 + 2 cos pi, 2 sin pi) = (-1, 0)$
+
+If instead $1 + 4 cos t = 0$:
+$
+1 + 4 cos t &= 0 \
+cos t &= -1/4 \
+sin t
+&= plus.minus sqrt(1 - (-1/4)^2) \
+&= plus.minus sqrt(15/16) \
+$
+
+Which gives us two more critical points:
+
+- $(1 + 2 cos t, sin t) = (1 + 2(-1/4), sqrt(15/16)) = (1/2, sqrt(15/16))$
+- $(1 + 2 cos t, sin t) = (1 + 2(-1/4), -sqrt(15/16)) = (1/2, -sqrt(15/16))$
+
+== c
+
+We need to examine three points: the critical point $(0, 0)$ on the interior and the four points on the boundary.
+We can evaluate $f$ at each point:
+
+- $f(0, 0) = 0^2 - 0^2 = 0$
+- $f(3, 0) = 3^2 - 0^2 = 9$
+- $f(-1, 0) = (-1)^2 - 0^2 = 1$
+- $f(1/2, sqrt(15/16)) = (1/2)^2 - sqrt(15/16)^2 = -11 / 16$
+- $f(1/2, -sqrt(15/16)) = (1/2)^2 - (-sqrt(15/16))^2 = -11 / 16$
+
+Therefore, the maximum value of $f$ on $D$ is
+$9$, attained at $(3, 0)$.
+
+== d
+
+Using the work from Part c,
+we can see that the minimum value of $f$ on $D$ is
+$-11/16$, attained at $(1/2, sqrt(15/16))$ and $(1/2, -sqrt(15/16))$.
+
+One point in $D$ which was found in Part b but is not a global extremum
+is $(-1, 0)$, which is on the boundary.
+If we take any point $(-1 + Delta x, 0 + Delta y)$ in $D$ sufficiently close to $(-1, 0)$,
+the value of $f$ is approximated well by $f(-1, 0) + nabla f(-1, 0) dot vec(Delta x, Delta y)$.
+
+$
+nabla f(-1, 0) &= vec(-2, 0) \
+nabla f(-1, 0) dot vec(Delta x, Delta y) &= -2 Delta x \
+$
+
+$Delta x$ must be positive for the point to be in $D$,
+so $-2 Delta x$ is negative and it follows that $f(-1, 0) + nabla f(-1, 0) dot vec(Delta x, Delta y)$ is less than $f(-1, 0)$.
+So $(-1, 0)$ is a local maximum.
